@@ -2,13 +2,16 @@
 //
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
+#include <numeric>
 
 using namespace std;
 
 
 // Sample differential equation (dy/dx = (x-y)/2)
 float dydx(float x, float y) {
-    return ((x-y) / 2);
+    return sin(y);
 }
 
 
@@ -19,7 +22,7 @@ float RungeKutta(float x0, float y0, float x, float h) {
     //Count number of iterations using stepsize h
     int n = (int)((x - x0) / h);
 
-    float k1, k2, k3, k4, k5;
+    float k1, k2, k3, k4;
 
     //Iterate for number of iterations
     float y = y0;
@@ -45,10 +48,11 @@ float RungeKutta(float x0, float y0, float x, float h) {
 // Driver method
 int main()
 {
-    float x0 = 0, y = 1, x = 2, h = 0.2;
+    float x0 = 0, y = 1, h = 0.2;
 
-    printf("\nThe value of y at x is: %f",
-        RungeKutta(x0, y, x, h));
+    for (int x = 0; x <= 10; x++) {
+        std::cout << "\nThe value of y at x is: " << RungeKutta(x0, y, x, h);
+    }
     
     return 0;
 }
